@@ -161,7 +161,7 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
         }
     }
 
-    [UnityEditor.MenuItem("Tools/MTL Converter/Convert MTL files")]
+    [UnityEditor.MenuItem("Saracen/Tools/Convert MTL files")]
     static void CreateWizard()
     {
         UnityEditor.ScriptableWizard.DisplayWizard<MTLConverterScriptableWizard>("Convert MTL files", "Apply");
