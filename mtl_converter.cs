@@ -41,6 +41,11 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
         return MTLDictionary;
     }
 
+    private String GetAsPathToPNG(String path) {
+        String strippedPath = path.GetFileNameWithoutExtension();
+        return strippedPath + ".png";
+    }
+
     private void ConvertMTLs()
     {
         string[] mtlFiles = Directory.GetFiles(directoryPath);
@@ -68,14 +73,18 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
 
                         if (diffuseTextures.Count == 1)
                         {
-                            Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + diffuseTextures[0], typeof(Texture2D));
+                            string tPath = GetAsPathToPNG(directoryPath + "/" + diffuseTextures[0]);
+                            Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath, typeof(Texture2D));
                             t1 = t;
                             t2 = t;
                         }
                         else if (diffuseTextures.Count == 2)
                         {
-                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + diffuseTextures[0], typeof(Texture2D));
-                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + diffuseTextures[1], typeof(Texture2D));
+                            string tPath1 = GetAsPathToPNG(directoryPath + "/" + diffuseTextures[0]);
+                            string tPath2 = GetAsPathToPNG(directoryPath + "/" + diffuseTextures[1]);
+
+                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath1, typeof(Texture2D));
+                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath2, typeof(Texture2D));
                         }
 
                         material.SetTexture("_Albedo0", t1);
@@ -89,7 +98,7 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
 
                         if (bumpTextures.Count == 1)
                         {
-                            string tPath = directoryPath + "/" + bumpTextures[0];
+                            string tPath = GetAsPathToPNG(directoryPath + "/" + bumpTextures[0]);
                             Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath, typeof(Texture2D));
                             if (t)
                             {
@@ -105,11 +114,11 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
                         }
                         else if (bumpTextures.Count == 2)
                         {
-                            string tPath1 = directoryPath + "/" + bumpTextures[0];
-                            string tPath2 = directoryPath + "/" + bumpTextures[1];
+                            string tPath1 = GetAsPathToPNG(directoryPath + "/" + bumpTextures[0]);
+                            string tPath2 = GetAsPathToPNG(directoryPath + "/" + bumpTextures[1]);
 
-                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + bumpTextures[0], typeof(Texture2D));
-                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + bumpTextures[1], typeof(Texture2D));
+                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath1, typeof(Texture2D));
+                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath2, typeof(Texture2D));
 
                             if (t1)
                             {
@@ -143,14 +152,18 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
 
                         if (specularTextures.Count == 1)
                         {
-                            Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + specularTextures[0], typeof(Texture2D));
+                            string tPath = GetAsPathToPNG(directoryPath + "/" + specularTextures[0]);
+                            Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath, typeof(Texture2D));
                             t1 = t;
                             t2 = t;
                         }
                         else if (specularTextures.Count == 2)
                         {
-                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + specularTextures[0], typeof(Texture2D));
-                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(directoryPath + "/" + specularTextures[1], typeof(Texture2D));
+                            string tPath1 = GetAsPathToPNG(directoryPath + "/" + specularTextures[0]);
+                            string tPath2 = GetAsPathToPNG(directoryPath + "/" + specularTextures[1]);
+
+                            t1 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath1, typeof(Texture2D));
+                            t2 = (Texture2D)AssetDatabase.LoadAssetAtPath(tPath2, typeof(Texture2D));
                         }
 
                         material.SetTexture("_Metallic0", t1);
