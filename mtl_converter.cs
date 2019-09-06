@@ -53,7 +53,7 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
                 
                 if (MTLDictionary.Keys.Count > 1)
                 {
-                    Shader shader = BlendShader;
+                    Shader shader = targetShader;
                     if (shader == null)
                         return;
 
