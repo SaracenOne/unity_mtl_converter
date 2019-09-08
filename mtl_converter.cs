@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,8 +42,8 @@ public class MTLConverterScriptableWizard : UnityEditor.ScriptableWizard
         return MTLDictionary;
     }
 
-    private String GetAsPathToPNG(String path) {
-        String strippedPath = path.GetFileNameWithoutExtension();
+    private string GetAsPathToPNG(string path) {
+        string strippedPath = Path.GetFileNameWithoutExtension(path);
         return strippedPath + ".png";
     }
 
